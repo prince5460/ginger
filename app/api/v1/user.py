@@ -4,6 +4,8 @@
 @Date : 19-4-17 下午4:19
 @Desc :
 '''
+from flask import jsonify
+
 from app.libs.error_code import NotFound
 from app.libs.redprint import Redprint
 from app.libs.token_auth import auth
@@ -18,7 +20,13 @@ def get_user(uid):
     user = User.query.get_or_404(uid)
     # if not user:
     #     raise NotFound()
-    return 'Hello World!'
+
+    # r = {
+    #     'nickname': user.nickname,
+    #     'email': user.email
+    # }
+
+    return jsonify(user)
 
 
 @api.route('/create')
