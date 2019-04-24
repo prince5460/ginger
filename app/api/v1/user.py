@@ -19,9 +19,6 @@ api = Redprint('user')
 @api.route('/<int:uid>', methods=['GET'])
 @auth.login_required
 def super_get_user(uid):
-    is_admin = g.user.is_admin
-    if not is_admin:
-        raise AuthFailed()
     user = User.query.filter_by(id=uid).first_or_404()
     return jsonify(user)
 
